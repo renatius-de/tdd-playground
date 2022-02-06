@@ -1,0 +1,61 @@
+plugins {
+    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
+    id 'org.asciidoctor.jvm.gems' version '3.3.2'
+
+    id 'eclipse' // optional (to generate Eclipse project files)
+    id 'idea' // optional (to generate IntelliJ IDEA project files)
+
+    id 'java'
+}
+
+group 'de.renatius.tdd.tipps'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+
+    ruby.gems()
+}
+
+dependencies {
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    testImplementation 'org.mockito:mockito-core:4.3.1'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+
+    //asciidoctorGems 'rubygems:rouge:3.15.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+asciidoctorPdf {
+    dependsOn asciidoctorGemsPrepare
+
+    baseDirFollowsSourceFile()
+
+    asciidoctorj {
+        requires 'rouge'
+        attributes 'build-gradle': file('build.gradle'),
+                'sourceDir': project.sourceSets.main.java.srcDirs[0],
+                'javaSourceDir': project.sourceSets.main.java.srcDirs[0],
+                'javaTestDir': project.sourceSets.test.java.srcDirs[0],
+                'author': 'René Six <dev@renatius.de>',
+                'icons': 'font',
+                'imagesdir': '{docdir}/images',
+                'revnumber': 'v1.0',
+                'sectanchors': true,
+                'sectlinks': true,
+                'sectnums': true,
+                //'source-highlighter': 'rouge',
+                'toc': 'left'
+    }
+}
+task asciidoctor(dependsOn: asciidoctorPdf)

@@ -1,0 +1,14 @@
+== Tipps und Tricks
+ifndef::imagesdir[:imagesdir: {docdir}/images]
+ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../../src/main/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../..//src/test/java]
+
+In diesem Abschnitt gebe ich dir einige Tipps, Tricks und Empfehlungen für gute und strukturierte Unittests.
+
+=== Testmethoden Struktur (AAA-Stil)
+
+Versucht mit einem Unittest eine "Geschichte" zu erzählen.
+
+=== Testfälle (CCC-Stil)
+
+=== don't mock what you don't own

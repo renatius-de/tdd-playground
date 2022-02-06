@@ -1,0 +1,31 @@
+= Test Driven Development Best Practices
+
+ifndef::imagesdir[:imagesdir: {docdir}/images]
+ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../src/main/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../src/test/java]
+:toc-title: Inhaltsverzeichnis
+
+In diesem Dokument gehe ich davon aus, dass die Grundlagen von Unittest bekannt sind und bekannt
+ist wie man im genutzten Framework Unittests schreibt. Die Beispiele in diesem Dokument sind Java
+geschrieben worden, können aber in jede andere Sprache übersetzt werden. Die hier beschriebenen
+*Best Practices* sind unabhängig von der genutzten Programmiersprache und gelten generell.
+
+WARNING: Es ist erschreckend einfach schlechte Unittests zu schreiben, die einem Projekt wenig
+Mehrwert bringen, die Kosten für Änderungen (costs of code changes) an der Code Basis aber
+astronomisch werden lassen.
+
+[source,java]
+.ein Beispiel zu Beginn
+----
+include::{javaSourceDir}/de/renatius/tdd/example/IntroExample.java[tags=contains,indent=0]
+----
+
+[source,java]
+.Tests für das Beispiel
+----
+include::{javaTestDir}/de/renatius/tdd/example/IntroExampleTest.java[tags=contains,indent=0]
+----
+
+include::{docdir}/section/de/01-motivation.adoc[]
+include::{docdir}/section/de/02-best-practices.adoc[]
+include::{docdir}/section/de/03-tipps-and-tricks.adoc[]

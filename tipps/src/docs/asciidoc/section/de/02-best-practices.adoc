@@ -1,0 +1,140 @@
+== Tipps um gute Unittest zu schreiben
+ifndef::imagesdir[:imagesdir: {docdir}/images]
+ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../../src/main/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../..//src/test/java]
+
+=== Immer nur eine Code-Unit testen
+
+Wenn eine Code-Unit getestet wird, kann diese mehrere Use Cases haben.
+_Jeder_ Use Case sollte in separatem Test behandelt werden.
+_Jeder_ Test muss unabhängig von anderen Tests sein.
+
+[source,java]
+.Code Beispiel
+----
+include::{javaSourceDir}/de/renatius/tdd/example/ExampleOneUnit.java[tags=contains,indent=0]
+----
+
+[source,java]
+.Test Code Beispiel
+----
+include::{javaTestDir}/de/renatius/tdd/example/ExampleOneUnitTest.java[tags=contains,indent=0]
+----
+
+Diese Tests helfen bei Code-Änderungen oder Refactoring, die nicht die funktionalität der Tests betreffen.
+Ein Ausführen der Tests reicht, um weiterhin eine funktionierende Applikation zu liefern.
+Zusätzlich führt eine Änderung am Verhalten der Businesslogik dazu, dass einer (oder mehrere) Tests fehlschlagen.
+
+=== Auf unnötige Assertions verzichten
+
+https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/
+
+Unittests sind dafür gedacht ein spezielles Verhalten zu abzudecken, nicht eine ganze Liste von Beobachtungen, welche
+in dem Code geschehen.
+
+Versucht nicht alles auf einmal sicherzustellen, fokussiert euch auf das was ihr testet. Andernfalls werdet ihr bei
+einer kleinen Codeänderung mehrere fehlschlagende Tests aufgrund des gleichen Grundes bekommen. Damit erreicht ihr auf
+längere Sicht nichts.
+
+=== Macht jeden Test unabhängig von allen anderen
+
+Macht keine Kette von Unittests.
+
+Es wird verhindern, dass ihr den Hauptgrund für den Fehler findet und ihr den Code debuggen müsst. Ausserdem erzeugt es
+Abhängigkeiten, d.h. ihr müsst nach dem ihr 1 Test ändert auch darauf aufbauende Tests anpassen.
+
+Wenn möglich benutzt `@BeforeEach` und `@AfterEach` bzw. `@BeforeAll` und `@AfterAll` als Vorbereitung (wenn nötig) für
+jeden Test. Wenn ihr mehrere verschiedene Dinge für verschiedene Tests vorbereiten müsst, ist es sinnvoll die Tests in
+verschieden Klassen zu schieben.
+
+=== Simuliert (mocked) alle externen Dienste
+
+Andernfalls testet ihr das Verhalten dieser Dienste mit. Sollte diese Dienste nur online erreichbar sein, funktionieren
+eure Unittests auch nur online und offline arbeiten ist nicht mehr möglich. Ausserdem können sich durch Status-
+oder Datenänderungen verschiedene Unittests gegenseitig beeinflussen, was zu falschen fehlschlägen führt.
+
+(Es macht keinen Spass einen Unittest debuggen zu müssen, nur weil ein externer Dienst ein Fehler hat.)
+
+=== Tested keine Konfiguration
+
+Per Definition sind Konfiguration nicht Teil des Codes, darum lagern wir sie schließlich in eigene Dateien und in Zeiten
+von Cloud-Computing in Configuration-Stores aus.
+
+=== Benenne deine Unit-Tests klar und einheitlich
+
+Nun, das ist vielleicht der wichtigste Punkt, an den du dich erinnern und dem du weiter folgen solltest.
+Du musst deine Testfälle danach benennen, was sie tatsächlich tun und testen.
+Eine Namenskonvention für Testfälle, die Klassennamen und Methodennamen für Testfallnamen verwendet, ist niemals eine
+gute Idee. Jedes Mal, wenn du den Methoden- oder Klassennamen änderst, wirst du am Ende auch viele Testfälle
+aktualisieren. Bei Refactoring sollten Änderungen am Test-Code minimal sein.
+
+Wenn deine Testfallnamen jedoch logisch sind, d. h. auf Operationen basieren, müssen Sie fast keine Änderungen
+vornehmen, da die Anwendungslogik höchstwahrscheinlich gleich bleibt.
+
+Z.B. Testfallnamen sollten wie folgt aussehen:
+
+. test_create_employee_valid_id
+. test_create_employee_null_id_throws_exception
+. test_create_employee_negative_id_throws_exception
+. test_create_employee_duplicate_id_throws_exception
+
+=== Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben
+
+Nun, das ist in der Tat umstritten.
+Du musst nach den kritischsten Teilen deines Codes suchen und du solltest sie testen, ohne dir Gedanken
+darüberzumachen, ob sie überhaupt privat sind.
+Diese Methoden können bestimmte kritische Algorithmen haben, die von einer oder zwei Klassen aufgerufen werden, aber
+sie spielen eine wichtige Rolle. Du möchtest sicher sein, dass sie wie vorgesehen funktionieren.
+
+=== Erstelle Komponententests, die auf Ausnahmen abzielen
+
+Wenn einige deiner Testfälle erwarten, dass die Ausnahmen von der Anwendung ausgelöst werden. Versuche, das Abfangen
+einer Ausnahme im Catch-Block zu vermeiden, und versuche die Verwendung der Fail- oder Asset Methode zu vermeiden.
+
+=== Verwenden Sie die am besten geeigneten Assertion-Methoden
+
+Es gibt viele Assertion-Methoden, mit denen du in jedem Testfall arbeiten kannst. Verwende die am besten geeignete mit
+der richtigen Argumentation und Überlegung. Sie sind für einen Zweck da, benutze sie.
+
+=== Bringen Sie Assertion-Parameter in die richtige Reihenfolge
+
+Assert-Methoden benötigen normalerweise zwei Parameter. Einer ist der erwartete Wert und der zweite ist der
+ursprüngliche Wert. Übergib sie nach Bedarf der Reihe nach. Dies hilft bei der korrekten Nachrichtenanalyse, wenn etwas
+schiefgeht.
+
+=== Trenne den Testcode von Produktionscode
+
+Stellen Sie in Ihrem Build-Skript sicher, dass der Testcode nicht mit dem tatsächlichen Quellcode bereitgestellt wird.
+Es ist Ressourcenverschwendung.
+
+=== Schreiben Sie keine eigenen catch-Blöcke, die nur existieren, um einen Test nicht zu bestehen
+
+Wenn eine Methode im Testcode eine Ausnahme auslöst, schreibe keinen catch-Block, nur um die Ausnahme abzufangen und
+den Testfall nicht zu bestehen. Verwenden Sie stattdessen throws Exception-Anweisung in der Testfall-Deklaration selbst.
+Ich würde die Verwendung der Exception-Klasse empfehlen und keine bestimmten Unterklassen von Exception verwenden.
+Dadurch wird auch die Testabdeckung erhöht.
+
+Ausserdem wirft eine Assertion im Regelfall selbst eine Exception im Fehlerfall. Wir wollen den Testcode nicht weiter
+verwenden daher sind präzise Exception wenig hilfreich.
+
+=== Verlasse dich nicht auf indirekte Tests
+
+Gehe nicht davon aus, dass ein bestimmter Testfall auch ein anderes Szenario testet, den ies fügt Mehrdeutigkeit hinzu.
+Schreibe stattdessen für jedes Szenario einen weiteren Testfall.
+
+=== Integrieren Sie Testfälle mit Build-Skript
+
+Es ist besser, wenn Sie Ihre Testfälle mit Build-Skripten integrieren können, damit sie automatisch in deiner
+Produktionsumgebung ausgeführt werden. Dies erhöht die Zuverlässigkeit der Anwendung sowie des Testaufbaus.
+
+=== Gebt einen Grund an, wenn ein Test überspringen wird
+
+Ein nicht ausgeführter Test nutzt niemandem etwas. Daher sollte ein Test nur temporär per `@Disabled` deaktiviert
+werden. Du solltest immer einen Grund für das Abschalten des Testes angeben. Nicht nur für dich, sondern auch für deine
+Kollegen.
+
+. `@Disabled("temporarily disabled for migration")`
+. `@Disabled("temporarily disabled to deploy hot fiy for bug: #")`
+
+Dauerhaft deaktivierte Test können sicher entfernt werden, deren Nutzen hat sich einfach überlebt und deren
+Produktionscode mit großer Wahrscheinlichkeit auch schon geändert.

@@ -1,0 +1,25 @@
+== Unittests verhindern keine Bugs
+
+NOTE: In computer programming, https://en.wikipedia.org/wiki/Unit_testing[*unit testing*] is a
+software testing method by which individual units of source code—sets of one or more computer
+program modules together with associated control data, usage procedures, and operating
+procedures—are tested to determine whether they are fit for use.
+
+IMPORTANT: Unittests beweisen *nicht* die Abwesenheit von Fehlern, sondern nur deren Anwesenheit
+bei fehlschlagenden Tests.
+
+Es ist wichtig die Motivation hinter Unit testing zu verstehen. *Unittests sind kein Weg Bugs in
+einer Applikation zu finden oder zu verhindern. Per Definition untersucht ein Unittest eine
+Code-Unit unabhängig und separat.* Wenn die Applikation gestartet wird, müssen diese Code-Unit
+zusammen arbeiten und erst im Zusammenspiel der Code-Unit treten Fehler auf. *Mithilfe von Unittest
+können keine Regression-Bugs gefunden werden.* Sicherstellen, dass eine Komponente X und Y
+unabhängig voneinander korrekt, Unittests sind ein
+
+NOTE: https://en.wikipedia.org/wiki/Test-driven_development[*Test-driven development*] (*TDD*) is a
+software development process relying on software requirements being converted to test cases before
+software is fully developed, and tracking all software development by repeatedly testing the
+software against all test cases. This is as opposed to software being developed first and test
+cases created later.
+
+Zur Findung von Regression Bugs empfiehlt sich https://en.wikipedia.org/wiki/Integration_testing[
+*Integration testing*] zu nutzen.
