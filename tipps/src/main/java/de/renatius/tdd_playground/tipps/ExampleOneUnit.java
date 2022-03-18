@@ -1,4 +1,4 @@
-package de.renatius.tipps;
+package de.renatius.tdd_playground.tipps;
 
 import java.util.Objects;
 

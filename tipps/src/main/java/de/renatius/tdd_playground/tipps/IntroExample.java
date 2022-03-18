@@ -1,8 +1,8 @@
-package de.renatius.tipps;
+package de.renatius.tdd_playground.tipps;
 
 import java.util.logging.Logger;
 
-@SuppressWarnings("java:S2629")
+@SuppressWarnings({"java:S2629", "java:S2696"})
 public class IntroExample {
     // tag::contains[]
     private static int callCounter = 0;

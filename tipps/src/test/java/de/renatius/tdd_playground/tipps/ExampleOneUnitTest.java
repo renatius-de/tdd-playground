@@ -1,4 +1,4 @@
-package de.renatius.tipps;
+package de.renatius.tdd_playground.tipps;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExampleOneUnitTest {
-    private de.renatius.tipps.ExampleOneUnit exampleOneUnit;
+    private ExampleOneUnit exampleOneUnit;
 
     @BeforeEach
     void setUp() {
-        exampleOneUnit = new de.renatius.tipps.ExampleOneUnit();
+        exampleOneUnit = new ExampleOneUnit();
     }
 
     // tag::contains[]
