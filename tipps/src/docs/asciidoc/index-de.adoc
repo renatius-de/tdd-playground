@@ -17,13 +17,13 @@ astronomisch werden lassen.
 [source,java]
 .ein Beispiel zu Beginn
 ----
-include::{javaSourceDir}/de/renatius/tdd/example/IntroExample.java[tags=contains,indent=0]
+include::{javaSourceDir}/de/renatius/tdd-playground/tipps/IntroExample.java[tags=contains,indent=0]
 ----
 
 [source,java]
 .Tests für das Beispiel
 ----
-include::{javaTestDir}/de/renatius/tdd/example/IntroExampleTest.java[tags=contains,indent=0]
+include::{javaTestDir}/de/renatius/tdd-playground/tipps/IntroExampleTest.java[tags=contains,indent=0]
 ----
 
 include::{docdir}/section/de/01-motivation.adoc[]

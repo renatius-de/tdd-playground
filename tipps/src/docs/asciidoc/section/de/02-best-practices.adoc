@@ -1,7 +1,7 @@
 == Tipps um gute Unittest zu schreiben
 ifndef::imagesdir[:imagesdir: {docdir}/images]
 ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../../src/main/java]
-ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../..//src/test/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../../src/test/java]
 
 === Immer nur eine Code-Unit testen
 
@@ -12,13 +12,13 @@ _Jeder_ Test muss unabhängig von anderen Tests sein.
 [source,java]
 .Code Beispiel
 ----
-include::{javaSourceDir}/de/renatius/tdd/example/ExampleOneUnit.java[tags=contains,indent=0]
+include::{javaSourceDir}/de/renatius/tdd-playground/tipps/ExampleOneUnit.java[tags=contains,indent=0]
 ----
 
 [source,java]
 .Test Code Beispiel
 ----
-include::{javaTestDir}/de/renatius/tdd/example/ExampleOneUnitTest.java[tags=contains,indent=0]
+include::{javaTestDir}/de/renatius/tdd-playground/tipps/ExampleOneUnitTest.java[tags=contains,indent=0]
 ----
 
 Diese Tests helfen bei Code-Änderungen oder Refactoring, die nicht die funktionalität der Tests betreffen.
@@ -73,10 +73,10 @@ vornehmen, da die Anwendungslogik höchstwahrscheinlich gleich bleibt.
 
 Z.B. Testfallnamen sollten wie folgt aussehen:
 
-. test_create_employee_valid_id
-. test_create_employee_null_id_throws_exception
-. test_create_employee_negative_id_throws_exception
-. test_create_employee_duplicate_id_throws_exception
+. create_employee_with_valid_id
+. create_employee_with_null_id_throws_exception
+. create_employee_with_negative_id_throws_exception
+. create_employee_with_duplicate_id_throws_exception
 
 === Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben
 

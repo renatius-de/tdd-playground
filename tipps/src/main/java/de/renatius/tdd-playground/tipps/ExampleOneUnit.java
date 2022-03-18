@@ -1,4 +1,4 @@
-package de.renatius.tdd.example;
+package de.renatius.tipps;
 
 import java.util.Objects;
 

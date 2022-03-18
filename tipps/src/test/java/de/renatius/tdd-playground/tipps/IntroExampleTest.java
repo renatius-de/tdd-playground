@@ -1,4 +1,4 @@
-package de.renatius.tdd.example;
+package de.renatius.tipps;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,13 +13,13 @@ class IntroExampleTest {
     @Test
     void test0() {
         Logger logger = Mockito.mock(Logger.class);
-        IntroExample.StringUtil stringUtil = Mockito.mock(IntroExample.StringUtil.class);
-        IntroExample example = new IntroExample(logger, stringUtil);
+        de.renatius.tipps.IntroExample.StringUtil stringUtil = Mockito.mock(de.renatius.tipps.IntroExample.StringUtil.class);
+        de.renatius.tipps.IntroExample example = new de.renatius.tipps.IntroExample(logger, stringUtil);
 
         Mockito.when(stringUtil.transform(ArgumentMatchers.eq("input 1"))).thenReturn("test 1");
 
         String transformed = example.wrapTransform("input 1");
-        int callCounter = IntroExample.getCallCounter();
+        int callCounter = de.renatius.tipps.IntroExample.getCallCounter();
 
         Mockito.verify(logger, Mockito.atLeastOnce()).info(ArgumentMatchers.anyString());
 
@@ -30,13 +30,13 @@ class IntroExampleTest {
     @Test
     void test1() {
         Logger logger = Mockito.mock(Logger.class);
-        IntroExample.StringUtil stringUtil = Mockito.mock(IntroExample.StringUtil.class);
-        IntroExample example = new IntroExample(logger, stringUtil);
+        de.renatius.tipps.IntroExample.StringUtil stringUtil = Mockito.mock(de.renatius.tipps.IntroExample.StringUtil.class);
+        de.renatius.tipps.IntroExample example = new de.renatius.tipps.IntroExample(logger, stringUtil);
 
         Mockito.when(stringUtil.transform(ArgumentMatchers.eq("input 2"))).thenReturn("result 2");
 
         String transformed = example.wrapTransform("input 3");
-        int callCounter = IntroExample.getCallCounter();
+        int callCounter = de.renatius.tipps.IntroExample.getCallCounter();
 
         Mockito.verify(logger, Mockito.atLeastOnce()).info(ArgumentMatchers.anyString());
 
