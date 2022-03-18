@@ -1,3 +1,13 @@
 rootProject.name = 'tdd-playground'
 
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            library('assertJ-core', 'org.assertj:assertj-core:3.22.0')
+            library('junit-bom', 'org.junit:junit-bom:5.8.2')
+            library('mockito-bom', 'org.mockito:mockito-core:4.3.1')
+        }
+    }
+}
+
 include 'tipps'

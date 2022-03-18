@@ -1,5 +1,40 @@
 plugins {
+    id 'eclipse' // optional (to generate Eclipse project files)
+    id 'idea' // optional (to generate IntelliJ IDEA project files)
+
     id 'java'
 }
-group 'de.renatius.tdd'
+
+group 'de.renatius.tdd-playground'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+subprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    plugins.withId('java') {
+        apply plugin: 'checkstyle'
+
+        repositories {
+            mavenCentral()
+        }
+
+        dependencies {
+            testImplementation(
+                    platform(libs.junit.bom.get()),
+                    platform(libs.mockito.bom.get()),
+            )
+        }
+
+        test {
+            useJUnitPlatform()
+
+            testLogging {
+                events "passed", "skipped", "failed"
+            }
+        }
+    }
+}
