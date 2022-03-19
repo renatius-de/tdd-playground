@@ -138,3 +138,15 @@ Kollegen.
 
 Dauerhaft deaktivierte Test können sicher entfernt werden, deren Nutzen hat sich einfach überlebt und deren
 Produktionscode mit großer Wahrscheinlichkeit auch schon geändert.
+
+=== Benutzt keine versteckten implizite Tests
+
+=== haltet euch an Konventionen
+
+=== Benutzt Constructor-Injection
+
+=== Komplexität von Testmethoden
+
+=== Randomisiere deine Testdaten
+
+=== benutze Factory-Methoden zur Erzeugung der Testdaten
