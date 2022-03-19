@@ -12,13 +12,13 @@ _Jeder_ Test muss unabhängig von anderen Tests sein.
 [source,java]
 .Code Beispiel
 ----
-include::{javaSourceDir}/de/renatius/tdd-playground/tipps/ExampleOneUnit.java[tags=contains,indent=0]
+include::{javaSourceDir}/de/renatius/tdd_playground/tipps/ExampleOneUnit.java[tags=contains,indent=0]
 ----
 
 [source,java]
 .Test Code Beispiel
 ----
-include::{javaTestDir}/de/renatius/tdd-playground/tipps/ExampleOneUnitTest.java[tags=contains,indent=0]
+include::{javaTestDir}/de/renatius/tdd_playground/tipps/ExampleOneUnitTest.java[tags=contains,indent=0]
 ----
 
 Diese Tests helfen bei Code-Änderungen oder Refactoring, die nicht die funktionalität der Tests betreffen.
