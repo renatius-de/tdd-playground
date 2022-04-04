@@ -41,7 +41,7 @@ längere Sicht nichts.
 Macht keine Kette von Unittests.
 
 Es wird verhindern, dass ihr den Hauptgrund für den Fehler findet und ihr den Code debuggen müsst. Ausserdem erzeugt es
-Abhängigkeiten, d.h. ihr müsst nach dem ihr 1 Test ändert auch darauf aufbauende Tests anpassen.
+Abhängigkeiten, d.h. ihr müsst nach dem ihr 1 Test ändert auch alle darauf aufbauende Tests anpassen.
 
 Wenn möglich benutzt `@BeforeEach` und `@AfterEach` bzw. `@BeforeAll` und `@AfterAll` als Vorbereitung (wenn nötig) für
 jeden Test. Wenn ihr mehrere verschiedene Dinge für verschiedene Tests vorbereiten müsst, ist es sinnvoll die Tests in
@@ -53,12 +53,13 @@ Andernfalls testet ihr das Verhalten dieser Dienste mit. Sollte diese Dienste nu
 eure Unittests auch nur online und offline arbeiten ist nicht mehr möglich. Ausserdem können sich durch Status-
 oder Datenänderungen verschiedene Unittests gegenseitig beeinflussen, was zu falschen fehlschlägen führt.
 
-(Es macht keinen Spass einen Unittest debuggen zu müssen, nur weil ein externer Dienst ein Fehler hat.)
+(Btw. macht es keinen Spass einen Unittest debuggen zu müssen, nur weil ein externer Dienst einen Fehler hat.)
 
 === Tested keine Konfiguration
 
 Per Definition sind Konfiguration nicht Teil des Codes, darum lagern wir sie schließlich in eigene Dateien und in Zeiten
-von Cloud-Computing in Configuration-Stores aus.
+von Cloud-Computing in Configuration-Stores aus. Das wichtigste, Konfiguration werden sich zur Laufzeit oder zur
+Startzeit der Applikation unterscheiden, daher wäre ein Test sinnfrei.
 
 === Benenne deine Unit-Tests klar und einheitlich
 
@@ -68,28 +69,25 @@ Eine Namenskonvention für Testfälle, die Klassennamen und Methodennamen für T
 gute Idee. Jedes Mal, wenn du den Methoden- oder Klassennamen änderst, wirst du am Ende auch viele Testfälle
 aktualisieren. Bei Refactoring sollten Änderungen am Test-Code minimal sein.
 
-Wenn deine Testfallnamen jedoch logisch sind, d. h. auf Operationen basieren, müssen Sie fast keine Änderungen
+Wenn deine Testfallnamen jedoch logisch sind, d.h. auf Operationen basieren, müssen Sie fast keine Änderungen
 vornehmen, da die Anwendungslogik höchstwahrscheinlich gleich bleibt.
 
 Z.B. Testfallnamen sollten wie folgt aussehen:
 
-. create_employee_with_valid_id
-. create_employee_with_null_id_throws_exception
-. create_employee_with_negative_id_throws_exception
-. create_employee_with_duplicate_id_throws_exception
+* `create_employee_with_valid_id`
+* `create_employee_with_null_id_throws_exception`
+* `create_employee_with_negative_id_throws_exception`
+* `create_employee_with_duplicate_id_throws_exception`
 
 === Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben
 
 Nun, das ist in der Tat umstritten.
+
 Du musst nach den kritischsten Teilen deines Codes suchen und du solltest sie testen, ohne dir Gedanken
 darüberzumachen, ob sie überhaupt privat sind.
+
 Diese Methoden können bestimmte kritische Algorithmen haben, die von einer oder zwei Klassen aufgerufen werden, aber
 sie spielen eine wichtige Rolle. Du möchtest sicher sein, dass sie wie vorgesehen funktionieren.
-
-=== Erstelle Komponententests, die auf Ausnahmen abzielen
-
-Wenn einige deiner Testfälle erwarten, dass die Ausnahmen von der Anwendung ausgelöst werden. Versuche, das Abfangen
-einer Ausnahme im Catch-Block zu vermeiden, und versuche die Verwendung der Fail- oder Asset Methode zu vermeiden.
 
 === Verwenden Sie die am besten geeigneten Assertion-Methoden
 
@@ -107,7 +105,10 @@ schiefgeht.
 Stellen Sie in Ihrem Build-Skript sicher, dass der Testcode nicht mit dem tatsächlichen Quellcode bereitgestellt wird.
 Es ist Ressourcenverschwendung.
 
-=== Schreiben Sie keine eigenen catch-Blöcke, die nur existieren, um einen Test nicht zu bestehen
+=== Erstelle Komponententests, die auf Ausnahmen abzielen
+
+Wenn einige eurer Testfälle erwarten, dass die Ausnahmen von der Anwendung ausgelöst werden. Versuche, das Abfangen
+einer Ausnahme im Catch-Block zu vermeiden, und versuche die Verwendung der Fail- oder Asset-Methode zu vermeiden.
 
 Wenn eine Methode im Testcode eine Ausnahme auslöst, schreibe keinen catch-Block, nur um die Ausnahme abzufangen und
 den Testfall nicht zu bestehen. Verwenden Sie stattdessen throws Exception-Anweisung in der Testfall-Deklaration selbst.
@@ -119,27 +120,45 @@ verwenden daher sind präzise Exception wenig hilfreich.
 
 === Verlasse dich nicht auf indirekte Tests
 
-Gehe nicht davon aus, dass ein bestimmter Testfall auch ein anderes Szenario testet, den ies fügt Mehrdeutigkeit hinzu.
-Schreibe stattdessen für jedes Szenario einen weiteren Testfall.
+Gehe nicht davon aus, dass ein bestimmter Testfall auch ein anderes Szenario testet, den dies fügt Mehrdeutigkeit hinzu.
+Schreibe stattdessen für jedes Szenario einen weiteren expliziten Testfall.
 
 === Integrieren Sie Testfälle mit Build-Skript
 
-Es ist besser, wenn Sie Ihre Testfälle mit Build-Skripten integrieren können, damit sie automatisch in deiner
-Produktionsumgebung ausgeführt werden. Dies erhöht die Zuverlässigkeit der Anwendung sowie des Testaufbaus.
+Dies sollte selbstverständlich sein. Es ist besser, wenn ihr eure Testfälle mit Build-Skripten integrieren können,
+damit sie automatisch in deiner Continuous Development Umgebung ausgeführt werden. Dies erhöht die Zuverlässigkeit der
+Anwendung sowie des Testaufbaus.
 
 === Gebt einen Grund an, wenn ein Test überspringen wird
 
 Ein nicht ausgeführter Test nutzt niemandem etwas. Daher sollte ein Test nur temporär per `@Disabled` deaktiviert
-werden. Du solltest immer einen Grund für das Abschalten des Testes angeben. Nicht nur für dich, sondern auch für deine
-Kollegen.
+werden. Ihr solltet immer einen Grund für das Abschalten des Testes angeben. Nicht nur für euch selbst, sondern auch
+für eure Kollegen.
 
-. `@Disabled("temporarily disabled for migration")`
-. `@Disabled("temporarily disabled to deploy hot fiy for bug: #")`
+* `@Disabled("temporarily disabled for migration")`
+* `@Disabled("temporarily disabled to deploy hot fix for bug: #123")`
 
 Dauerhaft deaktivierte Test können sicher entfernt werden, deren Nutzen hat sich einfach überlebt und deren
-Produktionscode mit großer Wahrscheinlichkeit auch schon geändert.
+Produktionscode mit großer Wahrscheinlichkeit schon geändert.
 
 === Benutzt keine versteckten implizite Tests
+
+[source,java]
+.Beispiel für einen schlechten Test
+----
+include::{javaTestDir}/de/renatius/tdd_playground/tipps/ImplicitTest.java[tags=bad_example,indent=0]
+----
+Dieses Antipattern sehe ich in fast allen Projekten, an denen ich arbeite oder gearbeitet habe.
+
+* Die Erwartung steht sehr weit oben im Test und nicht am Ende.
+* Sollten die Parameter nicht stimmen kommt es zu unerwarteten `NullPointerException`.
+* Der Test ist implizit und Tests müssen immer explizit sein um verständlich und wartbar zu sein.
+
+[source,java]
+.Beispiel für einen impliziten Test
+----
+include::{javaTestDir}/de/renatius/tdd_playground/tipps/ImplicitTest.java[tags=good_example,indent=0]
+----
 
 === haltet euch an Konventionen
 
