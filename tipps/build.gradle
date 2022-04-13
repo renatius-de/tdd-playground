@@ -38,7 +38,7 @@ asciidoctor {
             'icons': 'font',
             'imagesdir': '{docdir}/images',
             'languages': ['de', 'en'],
-            'revnumber' : { project.version.toString() },
+            'revnumber' : new Date().format('yyyyMMdd'),
             'sectanchors': true,
             'sectlinks': true,
             'sectnums': true,

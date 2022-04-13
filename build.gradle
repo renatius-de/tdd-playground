@@ -12,7 +12,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 task publish(type: Copy) {
-    dependsOn ':tipps:build'
+    dependsOn build
 
     from(project(':tipps').buildDir.toString() + '/docs/asciidoc/')
     into('docs/')
