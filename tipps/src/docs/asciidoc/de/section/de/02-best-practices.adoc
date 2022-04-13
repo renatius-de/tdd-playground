@@ -155,7 +155,7 @@ Dieses Antipattern sehe ich in fast allen Projekten, an denen ich arbeite oder g
 * Der Test ist implizit und Tests müssen immer explizit sein um verständlich und wartbar zu sein.
 
 [source,java]
-.Beispiel für einen impliziten Test
+.Beispiel für einen expliziten Test
 ----
 include::{javaTestDir}/de/renatius/tdd_playground/tipps/ImplicitTest.java[tags=good_example,indent=0]
 ----
