@@ -31,8 +31,8 @@ subprojects {
 
         dependencies {
             testImplementation(
-                    platform(libs.junit.bom.get()),
-                    platform(libs.mockito.bom.get()),
+                    enforcedPlatform(libs.junit.bom.get()),
+                    enforcedPlatform(libs.mockito.bom.get()),
             )
         }
 

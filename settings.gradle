@@ -3,9 +3,15 @@ rootProject.name = 'tdd-playground'
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            library('assertJ-core', 'org.assertj:assertj-core:3.22.0')
-            library('junit-bom', 'org.junit:junit-bom:5.8.2')
-            library('mockito-bom', 'org.mockito:mockito-core:4.3.1')
+            def asciidoc = version('asciidoctor', '3.3.2')
+
+            library('assertJ-core', 'org.assertj', 'assertj-core').version('3.22.0')
+
+            library('junit-bom', 'org.junit', 'junit-bom').version('5.8.2')
+            library('mockito-bom', 'org.mockito', 'mockito-core').version('4.4.0')
+
+            plugin('asciidoc-convert', 'org.asciidoctor.jvm.convert').versionRef(asciidoc)
+            plugin('asciidoc-gems', 'org.asciidoctor.jvm.gems').versionRef(asciidoc)
         }
     }
 }
