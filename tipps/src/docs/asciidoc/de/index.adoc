@@ -1,8 +1,8 @@
 = Test Driven Development Best Practices
 
 ifndef::imagesdir[:imagesdir: {docdir}/images]
-ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../src/main/java]
-ifndef::javaTestDir[:javaTestDir: {docdir}/../../../src/test/java]
+ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../src/main/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../src/test/java]
 :toc-title: Inhaltsverzeichnis
 
 In diesem Dokument gehe ich davon aus, dass die Grundlagen von Unittest bekannt sind und bekannt
@@ -28,4 +28,4 @@ include::{javaTestDir}/de/renatius/tdd_playground/tipps/IntroExampleTest.java[ta
 
 include::{docdir}/section/de/01-motivation.adoc[]
 include::{docdir}/section/de/02-best-practices.adoc[]
-include::{docdir}/section/de/03-tipps-and-tricks.adoc[]
+//include::{docdir}/section/de/03-tipps-and-tricks.adoc[]

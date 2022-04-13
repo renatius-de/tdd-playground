@@ -1,7 +1,7 @@
 == Tipps um gute Unittest zu schreiben
 ifndef::imagesdir[:imagesdir: {docdir}/images]
-ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../../src/main/java]
-ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../../src/test/java]
+ifndef::javaSourceDir[:javaSourceDir: {docdir}/../../../../../../src/main/java]
+ifndef::javaTestDir[:javaTestDir: {docdir}/../../../../../../src/test/java]
 
 === Immer nur eine Code-Unit testen
 
@@ -160,12 +160,12 @@ Dieses Antipattern sehe ich in fast allen Projekten, an denen ich arbeite oder g
 include::{javaTestDir}/de/renatius/tdd_playground/tipps/ImplicitTest.java[tags=good_example,indent=0]
 ----
 
-=== haltet euch an Konventionen
-
-=== Benutzt Constructor-Injection
-
-=== Komplexität von Testmethoden
-
-=== Randomisiere deine Testdaten
-
-=== benutze Factory-Methoden zur Erzeugung der Testdaten
+//=== haltet euch an Konventionen
+//
+//=== Benutzt Constructor-Injection
+//
+//=== Komplexität von Testmethoden
+//
+//=== Randomisiere deine Testdaten
+//
+//=== benutze Factory-Methoden zur Erzeugung der Testdaten
