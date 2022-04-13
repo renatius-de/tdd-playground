@@ -24,6 +24,7 @@ dependencies {
 
 asciidoctor {
     dependsOn asciidoctorGemsPrepare
+    dependsOn check
 
     baseDirIsProjectDir()
     baseDirFollowsSourceFile()
@@ -43,8 +44,6 @@ asciidoctor {
             'sectnums': true,
             'source-highlighter': 'rouge',
             'rouge-style': 'monokai',
-            //'source-highlighter': 'pygments',
-            //'pygments-style': 'emacs',
             'toc': 'right'
 }
 

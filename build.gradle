@@ -11,6 +11,13 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
+task publish(type: Copy) {
+    dependsOn ':tipps:build'
+
+    from(project(':tipps').buildDir.toString() + '/docs/asciidoc/')
+    into('docs/')
+}
+
 subprojects {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
@@ -33,7 +40,7 @@ subprojects {
             useJUnitPlatform()
 
             testLogging {
-                events "passed", "skipped", "failed"
+                events 'passed', 'skipped', 'failed'
             }
         }
     }
