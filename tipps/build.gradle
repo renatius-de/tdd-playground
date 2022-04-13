@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'de.renatius.tdd-playground.tipps'
-version '1.0-SNAPSHOT'
+version '0.1'
 
 repositories {
     ruby.gems()
@@ -25,18 +25,27 @@ dependencies {
 asciidoctor {
     dependsOn asciidoctorGemsPrepare
 
+    baseDirIsProjectDir()
     baseDirFollowsSourceFile()
 
     attributes 'build-gradle': file('build.gradle'),
             'sourceDir': project.sourceSets.main.java.srcDirs[0],
             'javaSourceDir': project.sourceSets.main.java.srcDirs[0],
             'javaTestDir': project.sourceSets.test.java.srcDirs[0],
+
             'author': 'René Six <dev@renatius.de>',
             'icons': 'font',
             'imagesdir': '{docdir}/images',
-            'revnumber': 'v1.0',
+            'languages': ['de', 'en'],
+            'revnumber' : { project.version.toString() },
             'sectanchors': true,
             'sectlinks': true,
             'sectnums': true,
+            'source-highlighter': 'rouge',
+            'rouge-style': 'monokai',
+            //'source-highlighter': 'pygments',
+            //'pygments-style': 'emacs',
             'toc': 'right'
 }
+
+build.dependsOn asciidoctor
