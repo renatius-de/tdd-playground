@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  qodana:
+    image: jetbrains/qodana-jvm
+    command: "--show-report"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../src:/data/project/:ro
+      - ../build:/data/results/:rw
