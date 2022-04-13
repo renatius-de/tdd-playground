@@ -9,7 +9,7 @@ In diesem Abschnitt gebe ich dir einige Tipps, Tricks und Empfehlungen an die Ha
 
 Versucht mit einem Unittest eine "Geschichte" zu erzählen.
 
-=== Testfälle (CCC-Stil)
+=== Testfälle (CCC-Stil/Given, When, Then)
 
 === don't mock what you don't own
 
@@ -20,3 +20,5 @@ Versucht mit einem Unittest eine "Geschichte" zu erzählen.
 ==== parameterized tests
 
 ==== PI Test
+
+=== AssertJ
