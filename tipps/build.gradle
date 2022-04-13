@@ -1,6 +1,5 @@
 plugins {
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
-    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
     id 'org.asciidoctor.jvm.gems' version '3.3.2'
 
     id 'java'
@@ -41,26 +40,3 @@ asciidoctor {
             'sectnums': true,
             'toc': 'right'
 }
-
-asciidoctorPdf {
-    dependsOn asciidoctorGemsPrepare
-    baseDirFollowsSourceFile()
-
-    asciidoctorj {
-        requires 'rouge'
-        attributes 'build-gradle': file('build.gradle'),
-                'sourceDir': project.sourceSets.main.java.srcDirs[0],
-                'javaSourceDir': project.sourceSets.main.java.srcDirs[0],
-                'javaTestDir': project.sourceSets.test.java.srcDirs[0],
-                'author': 'René Six <dev@renatius.de>',
-                'icons': 'font',
-                'imagesdir': '{docdir}/images',
-                'revnumber': 'v1.0',
-                'sectanchors': true,
-                'sectlinks': true,
-                'sectnums': true,
-                'toc': 'left'
-    }
-}
-
-build.dependsOn asciidoctorPdf
