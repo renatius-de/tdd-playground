@@ -6,5 +6,5 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ../src:/data/project/:ro
-      - ../build:/data/results/:rw
+      - ./src:/data/project/:ro
+      - ./build:/data/results/:rw
