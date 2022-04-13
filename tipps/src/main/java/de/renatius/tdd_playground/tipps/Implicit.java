@@ -1,6 +1,6 @@
 package de.renatius.tdd_playground.tipps;
 
-@SuppressWarnings({"java:S1854", "unused"})
+@SuppressWarnings({"ClassCanBeRecord", "java:S1854", "unused", "UnusedReturnValue"})
 public class Implicit {
     private final Dependency dependency;
 
@@ -15,9 +15,7 @@ public class Implicit {
     }
 
     @SuppressWarnings({"java:S1172", "java:S3400"})
-    public static class Dependency {
-        public String someMethod(final Object object, final Integer integer) {
-            return "lid";
-        }
+    public interface Dependency {
+        String someMethod(final Object object, final Integer integer);
     }
 }

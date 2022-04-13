@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@SuppressWarnings({"java:S2699"})
 class ImplicitTest {
     private final Implicit.Dependency dependency = mock(Implicit.Dependency.class);
-    private final Implicit implicit = mock(Implicit.class);
+    private final Implicit objectUnderTest = new Implicit(dependency);
 
     @Test
     void some_method_returns_string() {
@@ -21,7 +22,9 @@ class ImplicitTest {
         // tag::good_example[]
         when(dependency.someMethod(any(), any())).thenReturn("Foo Bar Baz");
 
-        verify(dependency).someMethod(new Object(), 123);
+        objectUnderTest.someOtherMethod(123);
+
+        verify(dependency).someMethod(any(Object.class), eq(123));
         // end::good_example[]
     }
 }
