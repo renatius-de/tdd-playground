@@ -443,28 +443,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Test Driven Development Best Practices</h1>
 <div class="details">
 <span id="author" class="author">René Six <dev@renatius.de></span><br>
-<span id="revnumber">version 20220413</span>
+<span id="revnumber">version 20221231</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_unittests_verhindern_keine_bugs">1. Unittests verhindern keine Bugs</a>
+<li><a href="#_unittests_verhindern_keine_bugs">1. Unittests verhindern keine Bugs</a></li>
+<li><a href="#_tipps_um_gute_unittest_zu_schreiben">2. Tipps um gute Unittest zu schreiben</a>
 <ul class="sectlevel2">
-<li><a href="#_immer_nur_eine_code_unit_testen">1.1. Immer nur eine Code-Unit testen</a></li>
-<li><a href="#_auf_unnötige_assertions_verzichten">1.2. Auf unnötige Assertions verzichten</a></li>
-<li><a href="#_macht_jeden_test_unabhängig_von_allen_anderen">1.3. Macht jeden Test unabhängig von allen anderen</a></li>
-<li><a href="#_simuliert_mocked_alle_externen_dienste">1.4. Simuliert (mocked) alle externen Dienste</a></li>
-<li><a href="#_tested_keine_konfiguration">1.5. Tested keine Konfiguration</a></li>
-<li><a href="#_benenne_deine_unit_tests_klar_und_einheitlich">1.6. Benenne deine Unit-Tests klar und einheitlich</a></li>
-<li><a href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben">1.7. Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben</a></li>
-<li><a href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden">1.8. Verwenden Sie die am besten geeigneten Assertion-Methoden</a></li>
-<li><a href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge">1.9. Bringen Sie Assertion-Parameter in die richtige Reihenfolge</a></li>
-<li><a href="#_trenne_den_testcode_von_produktionscode">1.10. Trenne den Testcode von Produktionscode</a></li>
-<li><a href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen">1.11. Erstelle Komponententests, die auf Ausnahmen abzielen</a></li>
-<li><a href="#_verlasse_dich_nicht_auf_indirekte_tests">1.12. Verlasse dich nicht auf indirekte Tests</a></li>
-<li><a href="#_integrieren_sie_testfälle_mit_build_skript">1.13. Integrieren Sie Testfälle mit Build-Skript</a></li>
-<li><a href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird">1.14. Gebt einen Grund an, wenn ein Test überspringen wird</a></li>
-<li><a href="#_benutzt_keine_versteckten_implizite_tests">1.15. Benutzt keine versteckten implizite Tests</a></li>
+<li><a href="#_immer_nur_eine_code_unit_testen">2.1. Immer nur eine Code-Unit testen</a></li>
+<li><a href="#_auf_unnötige_assertions_verzichten">2.2. Auf unnötige Assertions verzichten</a></li>
+<li><a href="#_macht_jeden_test_unabhängig_von_allen_anderen">2.3. Macht jeden Test unabhängig von allen anderen</a></li>
+<li><a href="#_simuliert_mocked_alle_externen_dienste">2.4. Simuliert (mocked) alle externen Dienste</a></li>
+<li><a href="#_tested_keine_konfiguration">2.5. Tested keine Konfiguration</a></li>
+<li><a href="#_benenne_deine_unit_tests_klar_und_einheitlich">2.6. Benenne deine Unit-Tests klar und einheitlich</a></li>
+<li><a href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben">2.7. Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben</a></li>
+<li><a href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden">2.8. Verwenden Sie die am besten geeigneten Assertion-Methoden</a></li>
+<li><a href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge">2.9. Bringen Sie Assertion-Parameter in die richtige Reihenfolge</a></li>
+<li><a href="#_trenne_den_testcode_von_produktionscode">2.10. Trenne den Testcode von Produktionscode</a></li>
+<li><a href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen">2.11. Erstelle Komponententests, die auf Ausnahmen abzielen</a></li>
+<li><a href="#_verlasse_dich_nicht_auf_indirekte_tests">2.12. Verlasse dich nicht auf indirekte Tests</a></li>
+<li><a href="#_integrieren_sie_testfälle_mit_build_skript">2.13. Integrieren Sie Testfälle mit Build-Skript</a></li>
+<li><a href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird">2.14. Gebt einen Grund an, wenn ein Test überspringen wird</a></li>
+<li><a href="#_benutzt_keine_versteckten_implizite_tests">2.15. Benutzt keine versteckten implizite Tests</a></li>
 </ul>
 </li>
 </ul>
@@ -619,11 +620,15 @@ cases created later.
 </div>
 <div class="paragraph">
 <p>Zur Findung von Regression Bugs empfiehlt sich <a href="https://en.wikipedia.org/wiki/Integration_testing">
-<strong>Integration testing</strong></a> zu nutzen.
-== Tipps um gute Unittest zu schreiben</p>
+<strong>Integration testing</strong></a> zu nutzen.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tipps_um_gute_unittest_zu_schreiben"><a class="anchor" href="#_tipps_um_gute_unittest_zu_schreiben"></a><a class="link" href="#_tipps_um_gute_unittest_zu_schreiben">2. Tipps um gute Unittest zu schreiben</a></h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_immer_nur_eine_code_unit_testen"><a class="anchor" href="#_immer_nur_eine_code_unit_testen"></a><a class="link" href="#_immer_nur_eine_code_unit_testen">1.1. Immer nur eine Code-Unit testen</a></h3>
+<h3 id="_immer_nur_eine_code_unit_testen"><a class="anchor" href="#_immer_nur_eine_code_unit_testen"></a><a class="link" href="#_immer_nur_eine_code_unit_testen">2.1. Immer nur eine Code-Unit testen</a></h3>
 <div class="paragraph">
 <p>Wenn eine Code-Unit getestet wird, kann diese mehrere Use Cases haben.
 <em>Jeder</em> Use Case sollte in separatem Test behandelt werden.
@@ -672,7 +677,7 @@ Zusätzlich führt eine Änderung am Verhalten der Businesslogik dazu, dass eine
 </div>
 </div>
 <div class="sect2">
-<h3 id="_auf_unnötige_assertions_verzichten"><a class="anchor" href="#_auf_unnötige_assertions_verzichten"></a><a class="link" href="#_auf_unnötige_assertions_verzichten">1.2. Auf unnötige Assertions verzichten</a></h3>
+<h3 id="_auf_unnötige_assertions_verzichten"><a class="anchor" href="#_auf_unnötige_assertions_verzichten"></a><a class="link" href="#_auf_unnötige_assertions_verzichten">2.2. Auf unnötige Assertions verzichten</a></h3>
 <div class="paragraph">
 <p><a href="https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/" class="bare">https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/</a></p>
 </div>
@@ -687,7 +692,7 @@ längere Sicht nichts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_macht_jeden_test_unabhängig_von_allen_anderen"><a class="anchor" href="#_macht_jeden_test_unabhängig_von_allen_anderen"></a><a class="link" href="#_macht_jeden_test_unabhängig_von_allen_anderen">1.3. Macht jeden Test unabhängig von allen anderen</a></h3>
+<h3 id="_macht_jeden_test_unabhängig_von_allen_anderen"><a class="anchor" href="#_macht_jeden_test_unabhängig_von_allen_anderen"></a><a class="link" href="#_macht_jeden_test_unabhängig_von_allen_anderen">2.3. Macht jeden Test unabhängig von allen anderen</a></h3>
 <div class="paragraph">
 <p>Macht keine Kette von Unittests.</p>
 </div>
@@ -702,7 +707,7 @@ verschieden Klassen zu schieben.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_simuliert_mocked_alle_externen_dienste"><a class="anchor" href="#_simuliert_mocked_alle_externen_dienste"></a><a class="link" href="#_simuliert_mocked_alle_externen_dienste">1.4. Simuliert (mocked) alle externen Dienste</a></h3>
+<h3 id="_simuliert_mocked_alle_externen_dienste"><a class="anchor" href="#_simuliert_mocked_alle_externen_dienste"></a><a class="link" href="#_simuliert_mocked_alle_externen_dienste">2.4. Simuliert (mocked) alle externen Dienste</a></h3>
 <div class="paragraph">
 <p>Andernfalls testet ihr das Verhalten dieser Dienste mit. Sollte diese Dienste nur online erreichbar sein, funktionieren
 eure Unittests auch nur online und offline arbeiten ist nicht mehr möglich. Ausserdem können sich durch Status-
@@ -713,7 +718,7 @@ oder Datenänderungen verschiedene Unittests gegenseitig beeinflussen, was zu fa
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tested_keine_konfiguration"><a class="anchor" href="#_tested_keine_konfiguration"></a><a class="link" href="#_tested_keine_konfiguration">1.5. Tested keine Konfiguration</a></h3>
+<h3 id="_tested_keine_konfiguration"><a class="anchor" href="#_tested_keine_konfiguration"></a><a class="link" href="#_tested_keine_konfiguration">2.5. Tested keine Konfiguration</a></h3>
 <div class="paragraph">
 <p>Per Definition sind Konfiguration nicht Teil des Codes, darum lagern wir sie schließlich in eigene Dateien und in Zeiten
 von Cloud-Computing in Configuration-Stores aus. Das wichtigste, Konfiguration werden sich zur Laufzeit oder zur
@@ -721,7 +726,7 @@ Startzeit der Applikation unterscheiden, daher wäre ein Test sinnfrei.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_benenne_deine_unit_tests_klar_und_einheitlich"><a class="anchor" href="#_benenne_deine_unit_tests_klar_und_einheitlich"></a><a class="link" href="#_benenne_deine_unit_tests_klar_und_einheitlich">1.6. Benenne deine Unit-Tests klar und einheitlich</a></h3>
+<h3 id="_benenne_deine_unit_tests_klar_und_einheitlich"><a class="anchor" href="#_benenne_deine_unit_tests_klar_und_einheitlich"></a><a class="link" href="#_benenne_deine_unit_tests_klar_und_einheitlich">2.6. Benenne deine Unit-Tests klar und einheitlich</a></h3>
 <div class="paragraph">
 <p>Nun, das ist vielleicht der wichtigste Punkt, an den du dich erinnern und dem du weiter folgen solltest.
 Du musst deine Testfälle danach benennen, was sie tatsächlich tun und testen.
@@ -754,7 +759,7 @@ vornehmen, da die Anwendungslogik höchstwahrscheinlich gleich bleibt.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben"><a class="anchor" href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben"></a><a class="link" href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben">1.7. Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben</a></h3>
+<h3 id="_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben"><a class="anchor" href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben"></a><a class="link" href="#_alle_methoden_unabhängig_der_sichtbarkeit_sollten_korrekte_und_vollständige_tests_haben">2.7. Alle Methoden, unabhängig der Sichtbarkeit, sollten korrekte und vollständige Tests haben</a></h3>
 <div class="paragraph">
 <p>Nun, das ist in der Tat umstritten.</p>
 </div>
@@ -768,14 +773,14 @@ sie spielen eine wichtige Rolle. Du möchtest sicher sein, dass sie wie vorgeseh
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verwenden_sie_die_am_besten_geeigneten_assertion_methoden"><a class="anchor" href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden"></a><a class="link" href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden">1.8. Verwenden Sie die am besten geeigneten Assertion-Methoden</a></h3>
+<h3 id="_verwenden_sie_die_am_besten_geeigneten_assertion_methoden"><a class="anchor" href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden"></a><a class="link" href="#_verwenden_sie_die_am_besten_geeigneten_assertion_methoden">2.8. Verwenden Sie die am besten geeigneten Assertion-Methoden</a></h3>
 <div class="paragraph">
 <p>Es gibt viele Assertion-Methoden, mit denen du in jedem Testfall arbeiten kannst. Verwende die am besten geeignete mit
 der richtigen Argumentation und Überlegung. Sie sind für einen Zweck da, benutze sie.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge"><a class="anchor" href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge"></a><a class="link" href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge">1.9. Bringen Sie Assertion-Parameter in die richtige Reihenfolge</a></h3>
+<h3 id="_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge"><a class="anchor" href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge"></a><a class="link" href="#_bringen_sie_assertion_parameter_in_die_richtige_reihenfolge">2.9. Bringen Sie Assertion-Parameter in die richtige Reihenfolge</a></h3>
 <div class="paragraph">
 <p>Assert-Methoden benötigen normalerweise zwei Parameter. Einer ist der erwartete Wert und der zweite ist der
 ursprüngliche Wert. Übergib sie nach Bedarf der Reihe nach. Dies hilft bei der korrekten Nachrichtenanalyse, wenn etwas
@@ -783,14 +788,14 @@ schiefgeht.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_trenne_den_testcode_von_produktionscode"><a class="anchor" href="#_trenne_den_testcode_von_produktionscode"></a><a class="link" href="#_trenne_den_testcode_von_produktionscode">1.10. Trenne den Testcode von Produktionscode</a></h3>
+<h3 id="_trenne_den_testcode_von_produktionscode"><a class="anchor" href="#_trenne_den_testcode_von_produktionscode"></a><a class="link" href="#_trenne_den_testcode_von_produktionscode">2.10. Trenne den Testcode von Produktionscode</a></h3>
 <div class="paragraph">
 <p>Stellen Sie in Ihrem Build-Skript sicher, dass der Testcode nicht mit dem tatsächlichen Quellcode bereitgestellt wird.
 Es ist Ressourcenverschwendung.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_erstelle_komponententests_die_auf_ausnahmen_abzielen"><a class="anchor" href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen"></a><a class="link" href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen">1.11. Erstelle Komponententests, die auf Ausnahmen abzielen</a></h3>
+<h3 id="_erstelle_komponententests_die_auf_ausnahmen_abzielen"><a class="anchor" href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen"></a><a class="link" href="#_erstelle_komponententests_die_auf_ausnahmen_abzielen">2.11. Erstelle Komponententests, die auf Ausnahmen abzielen</a></h3>
 <div class="paragraph">
 <p>Wenn einige eurer Testfälle erwarten, dass die Ausnahmen von der Anwendung ausgelöst werden. Versuche, das Abfangen
 einer Ausnahme im Catch-Block zu vermeiden, und versuche die Verwendung der Fail- oder Asset-Methode zu vermeiden.</p>
@@ -807,14 +812,14 @@ verwenden daher sind präzise Exception wenig hilfreich.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verlasse_dich_nicht_auf_indirekte_tests"><a class="anchor" href="#_verlasse_dich_nicht_auf_indirekte_tests"></a><a class="link" href="#_verlasse_dich_nicht_auf_indirekte_tests">1.12. Verlasse dich nicht auf indirekte Tests</a></h3>
+<h3 id="_verlasse_dich_nicht_auf_indirekte_tests"><a class="anchor" href="#_verlasse_dich_nicht_auf_indirekte_tests"></a><a class="link" href="#_verlasse_dich_nicht_auf_indirekte_tests">2.12. Verlasse dich nicht auf indirekte Tests</a></h3>
 <div class="paragraph">
 <p>Gehe nicht davon aus, dass ein bestimmter Testfall auch ein anderes Szenario testet, den dies fügt Mehrdeutigkeit hinzu.
 Schreibe stattdessen für jedes Szenario einen weiteren expliziten Testfall.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_integrieren_sie_testfälle_mit_build_skript"><a class="anchor" href="#_integrieren_sie_testfälle_mit_build_skript"></a><a class="link" href="#_integrieren_sie_testfälle_mit_build_skript">1.13. Integrieren Sie Testfälle mit Build-Skript</a></h3>
+<h3 id="_integrieren_sie_testfälle_mit_build_skript"><a class="anchor" href="#_integrieren_sie_testfälle_mit_build_skript"></a><a class="link" href="#_integrieren_sie_testfälle_mit_build_skript">2.13. Integrieren Sie Testfälle mit Build-Skript</a></h3>
 <div class="paragraph">
 <p>Dies sollte selbstverständlich sein. Es ist besser, wenn ihr eure Testfälle mit Build-Skripten integrieren können,
 damit sie automatisch in deiner Continuous Development Umgebung ausgeführt werden. Dies erhöht die Zuverlässigkeit der
@@ -822,7 +827,7 @@ Anwendung sowie des Testaufbaus.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gebt_einen_grund_an_wenn_ein_test_überspringen_wird"><a class="anchor" href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird"></a><a class="link" href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird">1.14. Gebt einen Grund an, wenn ein Test überspringen wird</a></h3>
+<h3 id="_gebt_einen_grund_an_wenn_ein_test_überspringen_wird"><a class="anchor" href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird"></a><a class="link" href="#_gebt_einen_grund_an_wenn_ein_test_überspringen_wird">2.14. Gebt einen Grund an, wenn ein Test überspringen wird</a></h3>
 <div class="paragraph">
 <p>Ein nicht ausgeführter Test nutzt niemandem etwas. Daher sollte ein Test nur temporär per <code>@Disabled</code> deaktiviert
 werden. Ihr solltet immer einen Grund für das Abschalten des Testes angeben. Nicht nur für euch selbst, sondern auch
@@ -844,7 +849,7 @@ Produktionscode mit großer Wahrscheinlichkeit schon geändert.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_benutzt_keine_versteckten_implizite_tests"><a class="anchor" href="#_benutzt_keine_versteckten_implizite_tests"></a><a class="link" href="#_benutzt_keine_versteckten_implizite_tests">1.15. Benutzt keine versteckten implizite Tests</a></h3>
+<h3 id="_benutzt_keine_versteckten_implizite_tests"><a class="anchor" href="#_benutzt_keine_versteckten_implizite_tests"></a><a class="link" href="#_benutzt_keine_versteckten_implizite_tests">2.15. Benutzt keine versteckten implizite Tests</a></h3>
 <div class="listingblock">
 <div class="title">Beispiel für einen schlechten Test</div>
 <div class="content">
@@ -883,8 +888,8 @@ Produktionscode mit großer Wahrscheinlichkeit schon geändert.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 20220413<br>
-Last updated 2022-04-13 12:29:15 +0200
+Version 20221231<br>
+Last updated 2022-12-31 01:25:49 +0100
 </div>
 </div>
 <style>
