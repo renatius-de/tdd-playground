@@ -9,3 +9,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /tipps
+    schedule:
+      interval: weekly
