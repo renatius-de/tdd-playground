@@ -1,6 +1,5 @@
 ---
 name: Qodana
-version: 1.0
 
 on:
   push:

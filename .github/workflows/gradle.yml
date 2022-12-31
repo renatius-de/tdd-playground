@@ -8,7 +8,6 @@
 # building-and-testing-java-with-gradle
 ---
 name: Java CI with Gradle
-version: 1.0
 
 on:
   push:
