@@ -27,5 +27,7 @@ include::{javaTestDir}/de/renatius/tdd_playground/tipps/IntroExampleTest.java[ta
 ----
 
 include::{docdir}/section/de/01-motivation.adoc[]
+
 include::{docdir}/section/de/02-best-practices.adoc[]
+
 //include::{docdir}/section/de/03-tipps-and-tricks.adoc[]
