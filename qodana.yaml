@@ -1,0 +1,7 @@
+---
+version: 1.0
+failThreshold: 0
+profile:
+  name: qodana.recommended
+projectJDK: temurin-17
+linter: jetbrains/qodana-jvm:latest

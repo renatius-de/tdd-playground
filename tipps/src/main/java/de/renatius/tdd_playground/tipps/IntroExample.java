@@ -26,7 +26,7 @@ public class IntroExample {
         return transformed;
     }
 
-    interface StringUtil {
+    public interface StringUtil {
         String transform(String information);
     }
     // end::contains[]
