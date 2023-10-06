@@ -32,15 +32,15 @@ asciidoctor {
     baseDirFollowsSourceFile()
 
     attributes 'build-gradle': file('build.gradle'),
-            'sourceDir': project.sourceSets.main.java.srcDirs[0],
-            'javaSourceDir': project.sourceSets.main.java.srcDirs[0],
-            'javaTestDir': project.sourceSets.test.java.srcDirs[0],
+            'sourceDir': sourceSets.main.java.srcDirs[0],
+            'javaSourceDir': sourceSets.main.java.srcDirs[0],
+            'javaTestDir': sourceSets.test.java.srcDirs[0],
 
-            'author': 'René Six <dev@renatius.de>',
+            'author': '<a href="mailto:dev@renatius.de">René Six &lt;dev@renatius.de&gt;</a>',
             'icons': 'font',
             'imagesdir': '{docdir}/images',
             'languages': ['de', 'en'],
-            'revnumber' : new Date().format('yyyyMMdd'),
+            'revnumber' : new Date().format('yyyy-MM-dd'),
             'sectanchors': true,
             'sectlinks': true,
             'sectnums': true,
